@@ -13,5 +13,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: bluegreen-demo-preview
-              servicePort: 80
+              service:
+                name: bluegreen-demo-preview
+                port:
+                  number: 80
