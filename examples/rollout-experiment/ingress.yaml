@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: rollout-demo
@@ -8,10 +8,10 @@ metadata:
     ingress.kubernetes.io/app-root: /
 spec:
   rules:
-  - host: rollout-demo.dev.argoproj.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: rollout-demo
-          servicePort: 80
+    - host: rollout-demo.dev.argoproj.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rollout-demo
+              servicePort: 80
