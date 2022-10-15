@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - analysis.yaml
-  - nginx-gateway.yaml
   - gateway.yaml
   - services.yaml
   - virtualservice.yaml
