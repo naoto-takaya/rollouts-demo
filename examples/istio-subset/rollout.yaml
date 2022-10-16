@@ -18,6 +18,7 @@ spec:
       containers:
         - name: istio-rollout
           image: argoproj/rollouts-demo:green
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
