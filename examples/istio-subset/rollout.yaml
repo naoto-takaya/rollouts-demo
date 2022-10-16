@@ -41,6 +41,10 @@ spec:
       #         fieldRef:
       #           fieldPath: metadata.namespace
       canaryService: istio-rollout-canary
+      trafficRouting:
+        istio:
+          virtualServices:
+            - name: istio-rollout-vsvc
       # trafficRouting:
       #   istio:
       #     virtualService:
