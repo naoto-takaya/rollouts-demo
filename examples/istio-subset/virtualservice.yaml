@@ -9,10 +9,6 @@ spec:
     - "*"
   http:
     - name: primary
-      match:
-        - headers:
-            host:
-              exact: "istio-subset.localhost"
       route:
         - destination:
             host: istio-rollout
@@ -30,11 +26,7 @@ spec:
     - "*"
   http:
     - name: canary
-      match:
-        - headers:
-            host:
-              exact: "istio-subset.canary.localhost"
       route:
         - destination:
             host: istio-rollout-canary
-            subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
+            subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
