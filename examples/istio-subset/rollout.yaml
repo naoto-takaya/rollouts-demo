@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: istio-rollout
-          image: argoproj/rollouts-demo:blue
+          image: argoproj/rollouts-demo:yellow
           ports:
             - name: http
               containerPort: 8080
@@ -51,21 +51,11 @@ spec:
       #       canarySubsetName: canary # required
       #       stableSubsetName: stable # required
       steps:
-        - setWeight: 10
-        - pause: {} # pause indefinitely
         - setWeight: 20
-        - pause: { duration: 20s }
-        - setWeight: 30
-        - pause: { duration: 20s }
+        - pause: {}
         - setWeight: 40
-        - pause: { duration: 20s }
-        - setWeight: 50
-        - pause: { duration: 20s }
+        - pause: { duration: 10 }
         - setWeight: 60
-        - pause: { duration: 20s }
-        - setWeight: 70
-        - pause: { duration: 20s }
+        - pause: {}
         - setWeight: 80
-        - pause: { duration: 20s }
-        - setWeight: 90
-        - pause: { duration: 20s }
+        - pause: { duration: 10 }
