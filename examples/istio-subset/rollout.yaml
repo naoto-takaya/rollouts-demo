@@ -3,7 +3,8 @@ kind: Rollout
 metadata:
   name: istio-rollout
 spec:
-  revisionHistoryLimit: 2
+  replicas: 5
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: istio-rollout
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: istio-rollout
-          image: argoproj/rollouts-demo:yellow
+          image: argoproj/rollouts-demo:green
           ports:
             - name: http
               containerPort: 8080
