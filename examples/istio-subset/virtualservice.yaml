@@ -10,15 +10,17 @@ spec:
   http:
     - name: primary
       match:
-        - header:
-            host: "istio-subset.localhost"
+        - headers:
+            host:
+              exact: "istio-subset.localhost"
       route:
         - destination:
             host: istio-rollout
     - name: canary
       match:
-        - header:
-            host: "istio-subset.canary.localhost"
+        - headers:
+            host:
+              exact: "istio-subset.canary.localhost"
       route:
         - destination:
             host: istio-rollout-canary
