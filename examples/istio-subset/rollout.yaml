@@ -45,7 +45,7 @@ spec:
             name: istio-rollout-vsvc
             routes:
               - primary
-              - canary
+              # - canary
           destinationRule:
             name: rollout-destrule # required
             canarySubsetName: canary # required
