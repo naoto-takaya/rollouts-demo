@@ -28,5 +28,5 @@ spec:
     - name: canary
       route:
         - destination:
-            host: istio-rollout-canary
+            host: istio-rollout
             subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
