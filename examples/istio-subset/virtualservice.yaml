@@ -5,8 +5,8 @@ metadata:
 spec:
   gateways:
     - istio-rollout-gateway
-    - istio-rollout-gateway
-# hosts:
+hosts:
+  - "*"
 #   - istio-rollout.apps.argoproj.io
 #   - istio-rollout.local
 #   - istio-subset.localhost
@@ -14,7 +14,7 @@ http:
   - name: primary
     match:
       - uri:
-          prefix: "istio-subset.localhost"
+        prefix: "istio-subset.localhost"
     route:
       - destination:
           host: istio-rollout
@@ -22,13 +22,13 @@ http:
   - name: canary
     match:
       - uri:
-          prefix: "istio-subset.canary.localhost"
+        prefix: "istio-subset.canary.localhost"
     route:
       - destination:
           host: istio-rollout-canary
           subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
-      #   weight: 100
-      # - destination:
-      #     host: istio-rollout-canary
-      #     subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
-      #   weight: 0
+        #   weight: 100
+        # - destination:
+        #     host: istio-rollout-canary
+        #     subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
+        #   weight: 0
