@@ -13,11 +13,11 @@ spec:
         - destination:
             host: istio-rollout
             subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
-          weight: 100
-        - destination:
-            host: istio-rollout-canary
-            subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
-          weight: 0
+        #   weight: 100
+        # - destination:
+        #     host: istio-rollout-canary
+        #     subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
+        #   weight: 0
 
 ---
 apiVersion: networking.istio.io/v1alpha3
@@ -33,5 +33,5 @@ spec:
     - name: canary
       route:
         - destination:
-            host: istio-rollout
+            host: istio-rollout-canary
             subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
