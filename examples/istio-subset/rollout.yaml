@@ -45,6 +45,10 @@ spec:
         istio:
           virtualServices:
             - name: istio-rollout-vsvc
+          destinationRule:
+            name: rollout-destrule # required
+            canarySubsetName: canary # required
+            stableSubsetName: stable # required
       # trafficRouting:
       #   istio:
       #     virtualService:
