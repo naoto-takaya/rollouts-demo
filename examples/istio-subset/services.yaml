@@ -4,9 +4,23 @@ metadata:
   name: istio-rollout
 spec:
   ports:
-  - port: 80
-    targetPort: http
-    protocol: TCP
-    name: http
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: istio-rollout
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-rollout-canary
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
   selector:
     app: istio-rollout

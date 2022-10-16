@@ -28,28 +28,28 @@ spec:
   strategy:
     canary:
       # analysis will be performed in background, while rollout is progressing through its steps
-      analysis:
-        startingStep: 1 # index of step list, of when to start this analysis
-        templates:
-          - templateName: istio-success-rate
-        args: # arguments allow AnalysisTemplates to be re-used
-          - name: service
-            value: istio-rollout
-          - name: namespace
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.namespace
-      trafficRouting:
-        istio:
-          virtualService:
-            name: istio-rollout-vsvc
-            routes:
-              - primary
-              - canary
-          destinationRule:
-            name: rollout-destrule # required
-            canarySubsetName: canary # required
-            stableSubsetName: stable # required
+      # analysis:
+      #   startingStep: 1 # index of step list, of when to start this analysis
+      #   templates:
+      #     - templateName: istio-success-rate
+      #   args: # arguments allow AnalysisTemplates to be re-used
+      #     - name: service
+      #       value: istio-rollout
+      #     - name: namespace
+      #       valueFrom:
+      #         fieldRef:
+      #           fieldPath: metadata.namespace
+      canaryService: istio-rollout-canary
+      # trafficRouting:
+      #   istio:
+      #     virtualService:
+      #       name: istio-rollout-vsvc
+      #       routes:
+      #         - primary
+      #     destinationRule:
+      #       name: rollout-destrule # required
+      #       canarySubsetName: canary # required
+      #       stableSubsetName: stable # required
       steps:
         - setWeight: 10
         - pause: {} # pause indefinitely
