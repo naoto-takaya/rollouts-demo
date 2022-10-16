@@ -13,16 +13,18 @@ spec:
   http:
     - name: primary
       match:
-        - uri:
-            prefix: "istio-subset.localhost"
+        - headers:
+            host:
+              exact: "istio-subset.localhost"
       route:
         - destination:
             host: istio-rollout
             subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
     - name: canary
       match:
-        - uri:
-            prefix: "istio-subset.canary.localhost"
+        - headers:
+            host:
+              exact: "istio-subset.canary.localhost"
       route:
         - destination:
             host: istio-rollout-canary
