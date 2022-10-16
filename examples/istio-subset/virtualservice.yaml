@@ -1,25 +1,3 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: istio-rollout-vsvc
-spec:
-  gateways:
-    - istio-rollout-gateway
-  hosts:
-    - istio-rollout.apps.argoproj.io
-    - istio-rollout.local
-    - istio-subset.localhost
-  http:
-    - name: primary
-      route:
-        - destination:
-            host: istio-rollout
-            subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
-          weight: 100
-        - destination:
-            host: istio-rollout
-            subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
-          weight: 0
 # apiVersion: networking.istio.io/v1alpha3
 # kind: VirtualService
 # metadata:
@@ -27,20 +5,42 @@ spec:
 # spec:
 #   gateways:
 #     - istio-rollout-gateway
-#   http:
-#     - name: primary
-#       match:
-#         - uri:
-#             prefix: "istio-subset.localhost"
-#       route:
-#         - destination:
-#             host: istio-rollout
-#             subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
-#     - name: canary
-#       match:
-#         - uri:
-#             prefix: "istio-subset.canary.localhost"
-#       route:
-#         - destination:
-#             host: istio-rollout
-#             subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
+# hosts:
+#   - istio-rollout.apps.argoproj.io
+#   - istio-rollout.local
+#   - istio-subset.localhost
+# http:
+#   - name: primary
+#     route:
+#       - destination:
+#           host: istio-rollout
+#           subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
+#         weight: 100
+#       - destination:
+#           host: istio-rollout
+#           subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
+#         weight: 0
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-rollout-vsvc
+spec:
+  gateways:
+    - istio-rollout-gateway
+  http:
+    - name: primary
+      match:
+        - uri:
+            prefix: "istio-subset.localhost"
+      route:
+        - destination:
+            host: istio-rollout
+            subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
+    - name: canary
+      match:
+        - uri:
+            prefix: "istio-subset.canary.localhost"
+      route:
+        - destination:
+            host: istio-rollout
+            subset: canary # referenced in canary.trafficRouting.istio.destinationRule.canarySubsetName
