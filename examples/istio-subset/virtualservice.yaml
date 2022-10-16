@@ -27,8 +27,8 @@ spec:
               exact: "istio-subset.canary.localhost"
       route:
         - destination:
-            host: istio-rollout-canary
-            subset: canary # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
+            host: istio-rollout
+            subset: stable # referenced in canary.trafficRouting.istio.destinationRule.stableSubsetName
     #   weight: 100
     # - destination:
     #     host: istio-rollout-canary
